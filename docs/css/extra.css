@@ -1,0 +1,32 @@
+/* Controlar el tamaño de todas las imágenes */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;  /* Máximo 80% del ancho disponible */
+    height: 60%;    /* Mantiene la relación de aspecto original */
+    border: 5px solid #ccc; /* Establece un borde opcional */
+}
+
+body {
+    font-size: 25px; /* Cambia este valor para ajustar el tamaño */
+}
+
+
+/* Estilo para los títulos */
+h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para los párrafos */
+p {
+    margin: 10px 0 20px 0;
+    color: #000000;
+}
+
+
+
+
