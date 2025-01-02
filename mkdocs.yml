@@ -1,7 +1,7 @@
-site_name: Ilyass Khaleq Mansorui
-theme: 
-  name: ivory
-  favicon: favicon.ico
+site_name: Ilyass Khaleq Mansourui
+theme:
+  name: material
+
 
 extra_css:
   - css/extra.css
