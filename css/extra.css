@@ -1,0 +1,12 @@
+/* Controlar el tamaño de todas las imágenes */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;  /* Máximo 80% del ancho disponible */
+    height: auto;    /* Mantiene la relación de aspecto original */
+}
+
+
+
+
