@@ -1,6 +1,7 @@
 site_name: Ilyass Khaleq Mansourui
 theme:
-  name: material
+  name: "material"
+
 
 
 extra_css:

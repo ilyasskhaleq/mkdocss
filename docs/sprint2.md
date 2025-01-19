@@ -5,27 +5,27 @@
 ### TOP
 
 Aqquesta comanda monitoriotza a temps real tots els procesos que s'executen en el sistema.
-![Comanda](./imatges/imagen130.png)
-![Comanda](./imatges/imagen131.png)
+![Comanda](./imatges/imatge130.png)
+![Comanda](./imatges/imatge131.png)
 
 
 ### pstree
 
 Mostra una representació en forma d'arbre dels procesoss que se estan executan a temps real.
-![Comanda](./imatges/imagen132.png)
+![Comanda](./imatges/imatge132.png)
 
 ### ps aux
 
 Es una llista de tots els procesos e s'executen en el sistema a temps real i podem observar que tenen mes informació sobre cada proces.
-![Comanda](./imatges/imagen133.png)
-![Comanda](./imatges/imagen134.png)
+![Comanda](./imatges/imatge133.png)
+![Comanda](./imatges/imatge134.png)
 
 ### Ctrl + C
 
 `Ctrl + C` s'utilitza per parar un proces en el terminal, per exemple si estem fent un ping i cliquem les tecles Ctrl + C detenim el proces.
 
 En aquest cas com no tinc conexió a internet se me ha quedat buscant un ping que no pot trobar i al fer Ctrl + C he interrumpit el proces.
-![Comanda](./imatges/imagen135.png)
+![Comanda](./imatges/imatge135.png)
 
 
 
@@ -33,7 +33,7 @@ En aquest cas com no tinc conexió a internet se me ha quedat buscant un ping qu
 
 Es quasi igual al procés anterior, pero en aquest cas es per suspendre el proces i parar-lo temporalment.
 
-![Comanda](./imatges/imagen136.png)
+![Comanda](./imatges/imatge136.png)
 
 
 ### jobs
@@ -41,15 +41,16 @@ Es quasi igual al procés anterior, pero en aquest cas es per suspendre el proce
 Aquesta comnada es la que ens enseña tots els procesos que estan segon plà, com en el cas anterior al fer Ctrl + Z , gràcies a esta comanda podem veure quins prpcesos estan parats temporalment.
 
 Aqui podem comprovar amb el procés anterior i també he fet un altre ping i ho he supes temporalment per a que suritgue la llista que la componen dos pings parats temporalment.
-![Comanda](./imatges/imagen137.png)
-![Comanda](./imatges/imagen138.png)
+![Comanda](./imatges/imatge137.png)
+![Comanda](./imatges/imatge138.png)
+
 
 ### fg %
 
 Esta comanda s'utilitza per tornar a posar en marxa una comanda que està suspesa amb la comanda anterior.
 Com abans he fet un jobs i he creat com una llista que la componen 2 ping i ara el que farem es que gracies a esta comanda podrem pasar a primer pla el treball anterior.
 
-![Comanda](./imatges/imagen139.png)
+![Comanda](./imatges/imatge139.png)
 
 ### kill -9 PID
 
@@ -60,13 +61,13 @@ Amb aquesta comanda podrem parar un procés amb el seu PID. la comanda seria la 
 Ara farem un `ps aux ` per veure tots els processos i seleccionarem un.
 
 
-![Comanda](./imatges/imagen140.png)
+![Comanda](./imatges/imatge140.png)
 
-![Comanda](./imatges/imagen142.png)
+![Comanda](./imatges/imatge142.png)
 
 Podem observar que el proces 5480 ya no es.
 
-![Comanda](./imatges/imagen141.png)
+![Comanda](./imatges/imatge141.png)
 
 ## Gestió d’usuaris i grups
 
@@ -695,3 +696,92 @@ He descargat una imatge amb una mida de 887 Kb i he provat de sobrepassar el lim
 
 He ho he trobat ja que he deixat dos arxius anteriors per a fer espai. He calculat que no podre ni desà cap imatge i sí, tinc raó, ja que he sobrepassat el límit del directori. 
 ![Comanda](./imatges/imatge128.png)
+
+## Còpies de seguretat i automatització de tasques
+
+### 1.Teoria
+#### 1.1Còpies de seguretat (fer una taula comparativa)
+
+
+| **Tipus**           | **Descripció**                          | **Avantatges**                                         | **Desavantatges**                                           |
+|----------------------|------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------|
+| **Completes**        | És realitza una copia de tot.           | No es deixa cap arxiu,es a dir, es fa una copia de tot.              | Al fer estes copies completes utilitza molt d'espai i tarda molt de temps per fer les copies ja que en fa de tot.                |
+| **Diferencials**     | Una diferencial copia la diferencia sempre a partir de la ultima completa  | És molt útil per a copies que es fan seqüentcialment ja que utiliza menys espai i tarda menys que una completa.    | Necessita l'última completa i l'última diferencial (ja que fa com una diferencia entre la completa i la ultima diferencial).         |
+| **Incrementals**     | Canvis des de l'última còpia (qualsevol).| ocupen menys espai i son molt més ràpides.| Necessita completa i totes les incrementals per restaurar.  Duplicity
+
+### 2.Comandes
+#### 3.1 Explicació
+#### 3.2cp
+Es una copia simple no intel·ligent ho copio tot sense mirar res, ho fa tot en el local i no es pot fer remotament.
+
+#### 3.3rsync
+Copia intelligent només copia fitxers modificats i se pot utilitzar entre màquines remotes per ssh.
+
+#### 3.4dd
+No és per a fer còpies de fitxers és més per a fer clonacions de particions o de discos.També treballa en local i ho copia tot és a dir que tampoc és intel·ligent.
+Serveix per sobreescriu dades de sector a sector.Ja que ho esborra tot a nivell de bloc
+
+#### **CP(pràctica)**
+
+La comanda es cp -r /(origin) /(Destí). 
+Podem observar que hem fet una copia de tot lo que es troba al directori /homw/ilyass/Descargas a la carpeta nova que hem creat.
+
+![Comanda](./imatges/imatge143.png)
+
+#### **rsync**
+
+Aquesta comanda el que fe es una copia exacta dels directoris, es a dir, borra fitxers que no es triben en el altre directori.
+
+rsync -av --delete /home/alumne/Descargas/ /var/copies/
+
+Podem observar que ens borra la carpeta de prova 2 ja que no es troba en /var/copies.
+
+![Comanda](./imatges/imatge144.png)
+
+### **Automatització amb scripts i cron i anacron( Automatització de tasques a partir scripts)** 
+
+#### Diferencies entre anacron i cron
+
+Serveixen per automatitzar tasques en Ubuntu. Anteriorment funcionaven per separat, però ara estan integrats tots dos junts.
+
+Si els ordinadors poden estar apagats, és millor utilitzar anacron, perquè cron executa només quan l'ordinador està encès. En canvi, anacron automatitza tasques quan l'ordinador està apagat, i quan s'encén revisa si té alguna tasca pendent i l'executa.
+
+Utilitzarem anacron per a tasques de manteniment i generals.
+
+En canvi, utilitzarem cron quan ens interessa executar una funció en una data exacta o per a un usuari específic.
+
+Utilitzarem el fitxer /etc/crontab quan vulguem programar alguna cosa global per a tots els usuaris.
+
+Quan ens interessi un usuari específic, executarem la comanda crontab -e -u(usuari).
+
+Dins del directori /etc hi ha unes carpetes predeterminades per al cron, on podem posar scripts que es vulguin executar en una data exacta.
+
+#### **Pràctica**
+Creem un script per podeer provar com funciona aquesta pràctica i posem el codi següent.
+Si posem /home/$USER en anacron no funciona i hem de posar el usuari especific.
+![Comanda](./imatges/imatge1477.png)
+
+Cambiem els permisos a root.
+![Comanda](./imatges/imatge1478.png)
+
+En el arxiu /etc/crontab posem que en en la fecha següent es faigue la clonació del directori "imágines"
+![Comanda](./imatges/imatge1479.png)
+
+Aqui podem observar que ens ha fet la clonació en el la hora 10:26.
+![Comanda](./imatges/imatge14710.png)
+
+Ara el que farem es borrar la data d'avui en el fitxer /etc/cron.daily. 
+En primer lloc passem la script copies.sh
+![Comanda](./imatges/imatge14712.png)
+
+Ara borrem el .sh per a no tenir confusions.
+![Comanda](./imatges/imatge14713.png)
+
+Borrem el que hi ha dins de cron.daily
+![Comanda](./imatges/imatge14714.png)
+
+Cambiem de 5 a 1 per a que nomes tarde 1 min per a que ens pose la fecha en el cron.daily
+![Comanda](./imatges/imatge14715.png)
+
+Esperem el minut i ja podem veure que ja tenim la fecha diaria.
+![Comanda](./imatges/imatge14716.png)
