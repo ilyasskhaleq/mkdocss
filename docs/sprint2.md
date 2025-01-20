@@ -785,5 +785,4 @@ Cambiem de 5 a 1 per a que nomes tarde 1 min per a que ens pose la fecha en el c
 
 Esperem el minut i ja podem veure que ja tenim la fecha diaria.
 ![Comanda](./imatges/imatge14716.png)
-
-fin!
+ss
